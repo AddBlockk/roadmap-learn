@@ -1,14 +1,9 @@
-.light {
-  background-color: #fafafa;
-  /* Add other light mode styles */
+body {
+  background-color: var(--background-color);
+  transition: background-color 200ms linear;
 }
 
-.dark {
-  background-color: #000000;
-  /* Add other dark mode styles */
-}
-
-.container {
+.app__container {
   max-width: 1100px;
   margin: 0 auto;
   padding-top: 20px;
@@ -42,4 +37,17 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+}
+
+.change__theme {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-theme {
+  transition: 300ms ease-in-out;
+}
+
+.buttons-theme:active {
+  background: #c0c0c0;
 }

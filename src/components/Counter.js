@@ -1,5 +1,4 @@
 import { useState } from "react";
-import MyComponent from "./СhangeTitle";
 
 export default function Counter() {
   const [count, setCount] = useState(0);

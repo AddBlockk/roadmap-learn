@@ -1,0 +1,15 @@
+@layer utilities {
+  .light {
+    body {
+      background-color: #fafafa;
+    }
+    /* Add other light mode styles */
+  }
+
+  .dark {
+    body {
+      background-color: #000000;
+    }
+    /* Add other dark mode styles */
+  }
+}

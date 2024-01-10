@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function ChangeTitle() {
+export default function ButtonChangeTitle() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -9,7 +9,9 @@ export default function ChangeTitle() {
 
   return (
     <div className="change__title">
-      <button onClick={() => setCount((count) => count + 1)}>
+      <button
+        onClick={() => setCount((count) => count + 1)}
+        className="counter">
         Изменить Заголовок
       </button>
       <p className="comment">

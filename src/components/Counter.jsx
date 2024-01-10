@@ -6,7 +6,6 @@ export default function Counter() {
   function handleClick() {
     setCount(count + 1);
   }
-
   return (
     <div className="container">
       <div className="container-calc">
@@ -16,7 +15,7 @@ export default function Counter() {
         <button onClick={handleClick} className="counter">
           +
         </button>
-        <button className="counter">Значение: {count}</button>
+        <button className="counter count">Значение: {count}</button>
         <button onClick={() => setCount(count - 1)} className="counter">
           -
         </button>

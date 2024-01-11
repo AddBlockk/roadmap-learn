@@ -10,9 +10,6 @@ export default function ChangeTheme() {
   };
   return (
     <div className="change-theme">
-      <p className="comment">
-        \\ При нажатии на кнопки, будет меняться тема сайта
-      </p>
       <svg
         fill="#000000"
         width="30px"

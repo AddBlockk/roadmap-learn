@@ -14,10 +14,6 @@ export default function ButtonChangeTitle() {
         className="counter">
         Изменить Заголовок
       </button>
-      <p className="comment">
-        \\ При нажатии на кнопку будет изменяться заголовок сайта, так что не
-        мудри
-      </p>
     </div>
   );
 }

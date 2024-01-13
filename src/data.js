@@ -1,13 +1,13 @@
 export const people = [
   {
     id: 1,
-    name: "Tonya Tikovka",
+    name: "Тоня Тыковка",
     photo: "../tonya.jpg",
-    description: "Красивая и прекрасная девушка",
+    description: "Красивая и прекрасная девушка ",
   },
   {
     id: 2,
-    name: "Dima Boltach",
+    name: "Дима Болтач",
     photo: "../dima.jpg",
     description: "Создатель этого сайта",
   },

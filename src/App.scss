@@ -2,6 +2,11 @@
   display: none;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -9,7 +14,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
-  transition: background-color 200ms linear;
 }
 
 code {
@@ -65,7 +69,6 @@ main {
   margin: 0 auto;
 }
 
-.change__theme {
-  display: flex;
-  justify-content: center;
+.comment {
+  color: #8a8a8a;
 }

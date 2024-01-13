@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const ButtonTitle = styled.div`
+  display: flex;
+  justify-content: center;
   .change__title {
     border: 0px;
     border-radius: 10px;
@@ -12,6 +14,7 @@ const ButtonTitle = styled.div`
     font-size: 20px;
     transition: 200ms ease-in-out;
     cursor: pointer;
+    margin: 20px 0;
   }
   .change__title:hover {
     background-color: rgb(23, 143, 137);

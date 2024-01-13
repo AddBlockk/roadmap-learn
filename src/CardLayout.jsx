@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { people } from "./data";
 
 const CardTitle = styled.div`
   .container__cards {
@@ -17,16 +18,15 @@ const CardTitle = styled.div`
   }
 `;
 
-export default function CardLayout() {
+export default function CardLayout(name) {
   return (
     <CardTitle>
       <div className="container__cards">
-        <Link to="/cards/1" id="1">
-          Тоня
-        </Link>
-        <Link to="/cards/2" id="2">
-          Я
-        </Link>
+        {people.map((person) => (
+          <Link to={`/cards/${person.id}`} key={person.id}>
+            {person.name}
+          </Link>
+        ))}
         <Link to="/cards/new">Новая карточка</Link>
       </div>
       <Outlet />

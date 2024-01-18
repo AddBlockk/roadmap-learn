@@ -31,10 +31,7 @@ const CalcBody = styled.div`
       border: none;
       transition: 200ms ease-in-out;
     }
-    button:hover {
-      filter: brightness(1.3);
-      border-radius: 30%;
-    }
+
     .operations {
       background-color: #214d56;
     }
@@ -52,6 +49,9 @@ const CalcBody = styled.div`
     .delete__last__simbol {
       width: 40px;
     }
+    .SVGRepo_iconCarrier {
+      stroke: #beeaf3;
+    }
     .span-two {
       grid-column: span 2;
     }
@@ -68,14 +68,6 @@ const CalcBody = styled.div`
       word-wrap: break-word;
       word-break: break-all;
       margin-bottom: 2rem;
-      .previous__operand {
-        color: #d7e7e4;
-        font-size: 1.5rem;
-      }
-      .current__operand {
-        color: #d7e7e4;
-        font-size: 2.5rem;
-      }
     }
   }
 `;
@@ -276,7 +268,33 @@ export default function Counter() {
         <DigitButton digit="0" dispatch={dispatch} />
         <DigitButton digit="." dispatch={dispatch} />
         <button onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
-          <img src="./delete.svg" alt="" className="delete__last__simbol" />
+          <svg
+            className="delete__last__simbol"
+            width="40px"
+            height="40px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#fff">
+            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M16 9L13.0001 11.9999M13.0001 11.9999L10 15M13.0001 11.9999L10.0002 9M13.0001 11.9999L16.0002 15M8 6H19C19.5523 6 20 6.44772 20 7V17C20 17.5523 19.5523 18 19 18H8L2 12L8 6Z"
+                stroke="#beeaf3"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="SVGRepo_iconCarrier"
+              />
+            </g>
+          </svg>
         </button>
         <button
           onClick={() => dispatch({ type: ACTIONS.EVALUATE })}

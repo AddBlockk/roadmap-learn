@@ -29,7 +29,6 @@ html[data-theme="light"] {
   * {
     color: #1c1e21;
   }
-
   .container__cards {
     a:hover {
       background-color: #4449500c;
@@ -38,6 +37,41 @@ html[data-theme="light"] {
   .nav__list {
     a:hover {
       background-color: #4449500c;
+    }
+  }
+  .calculator__grid {
+    button {
+      color: #001e2b;
+      background-color: #e4f6f6;
+    }
+    button:hover {
+      filter: contrast(0.9);
+      border-radius: 30%;
+    }
+    background-color: #f1ffff;
+    .output {
+      background-color: #d0eae9;
+    }
+    .delete {
+      background-color: #c2e8ff;
+    }
+    .operations {
+      background-color: #beeaf5;
+    }
+    .equally {
+      background-color: #00fbfc;
+      color: #001e2b;
+    }
+    .SVGRepo_iconCarrier {
+      stroke: #001e2b;
+    }
+    .current__operand {
+      color: #0f2727;
+      font-size: 2.5rem;
+    }
+    .previous__operand {
+      color: #0f2727;
+      font-size: 1.5rem;
     }
   }
 }
@@ -47,7 +81,12 @@ html[data-theme="dark"] {
   * {
     color: #fff;
   }
-
+  .calculator__grid {
+    button:hover {
+      filter: brightness(1.3);
+      border-radius: 30%;
+    }
+  }
   .container__cards {
     a:hover {
       background-color: #4449509a;
@@ -57,6 +96,14 @@ html[data-theme="dark"] {
     a:hover {
       background-color: #4449509a;
     }
+  }
+  .current__operand {
+    color: #d7e7e4;
+    font-size: 2.5rem;
+  }
+  .previous__operand {
+    color: #d7e7e4;
+    font-size: 1.5rem;
   }
 }
 

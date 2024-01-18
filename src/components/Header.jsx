@@ -30,6 +30,8 @@ const HeaderContainer = styled.header`
     }
   }
   .nav__list {
+    display: flex;
+    justify-content: center;
     a {
       font-size: 20px;
       font-weight: 600;
@@ -56,7 +58,7 @@ export default function Header() {
       <div className="nav__body">
         <div className="header-logo">
           <Link to="/">
-            <img src="/logo.svg" alt="logo" />
+            <img src="./logo.svg" alt="logo" />
           </Link>
         </div>
         <nav className="nav__list">

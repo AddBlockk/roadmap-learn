@@ -1,10 +1,289 @@
-import Counter from "../components/Counter";
+import { useReducer } from "react";
+import styled from "styled-components";
+import DigitButton from "../components/DigitButton";
+import OperationButton from "../components/OperationButton";
 
-function Calculator() {
+const CalcBody = styled.div`
+  .counts {
+    display: flex;
+    column-gap: 20px;
+  }
+  .calculator__grid {
+    background-color: #101e1e;
+    max-width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 20px;
+    display: grid;
+    margin-top: 2rem;
+    gap: 10px;
+    justify-content: center;
+    grid-template-columns: repeat(4, 6rem);
+    grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+    button {
+      cursor: pointer;
+      font-size: 2.5rem;
+      border: 1px solid white;
+      outline: none;
+      background-color: #0f2727;
+      border-radius: 100%;
+      color: #beeaf3;
+      border: none;
+      transition: 200ms ease-in-out;
+    }
+    button:hover {
+      filter: brightness(1.3);
+      border-radius: 30%;
+    }
+    .operations {
+      background-color: #214d56;
+    }
+    .equally {
+      background-color: #004f50;
+      color: #17eef0;
+    }
+    .delete {
+      background-color: #064c66;
+      border-radius: 50px;
+    }
+    .delete:hover {
+      border-radius: 20px;
+    }
+    .delete__last__simbol {
+      width: 40px;
+    }
+    .span-two {
+      grid-column: span 2;
+    }
+    .output {
+      grid-column: 1/-1;
+      background-color: #0e3837;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-around;
+      color: #d7e7e4;
+      padding: 0.75rem;
+      word-wrap: break-word;
+      word-break: break-all;
+      margin-bottom: 2rem;
+      .previous__operand {
+        color: #d7e7e4;
+        font-size: 1.5rem;
+      }
+      .current__operand {
+        color: #d7e7e4;
+        font-size: 2.5rem;
+      }
+    }
+  }
+`;
+
+export const ACTIONS = {
+  ADD_DIGIT: "add-digit",
+  CHOOSE_OPERATION: "choose-operation",
+  CLEAR: "clear",
+  DELETE_DIGIT: "delete-digit",
+  EVALUATE: "evaluate",
+};
+
+function reducer(state, { type, payload }) {
+  switch (type) {
+    case ACTIONS.ADD_DIGIT:
+      if (state.overwrite) {
+        return {
+          ...state,
+          currentOperand: payload.digit,
+          overwrite: false,
+        };
+      }
+      if (state.currentOperand == null) {
+        return {
+          ...state,
+          currentOperand: payload.digit,
+        };
+      }
+      if (payload.digit === "." && state.currentOperand.includes(".")) {
+        return state;
+      }
+      return {
+        ...state,
+        currentOperand: `${state.currentOperand || ""}${payload.digit}`,
+      };
+
+    case ACTIONS.CHOOSE_OPERATION:
+      if (state.currentOperand == null && state.previousOperand == null) {
+        return state;
+      }
+
+      if (state.currentOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+        };
+      }
+
+      if (state.previousOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+          previousOperand: state.currentOperand,
+          currentOperand: null,
+        };
+      }
+
+      return {
+        ...state,
+        previousOperand: evaluate(state),
+        operation: payload.operation,
+        currentOperand: null,
+      };
+    case ACTIONS.CLEAR:
+      return {};
+    case ACTIONS.DELETE_DIGIT:
+      if (state.overwrite) {
+        return {
+          ...state,
+          overwrite: false,
+          currentOperand: null,
+        };
+      }
+      if (state.currentOperand == null) return state;
+      if (state.currentOperand.length === 1) {
+        return { ...state, currentOperand: null };
+      }
+
+      return {
+        ...state,
+        currentOperand: state.currentOperand.slice(0, -1),
+      };
+    case ACTIONS.EVALUATE:
+      if (
+        state.operation == null ||
+        state.currentOperand == null ||
+        state.previousOperand == null
+      ) {
+        return state;
+      }
+
+      return {
+        ...state,
+        overwrite: true,
+        previousOperand: null,
+        operation: null,
+        currentOperand: evaluate(state),
+      };
+    default:
+      return;
+  }
+}
+
+function evaluate({ currentOperand, previousOperand, operation }) {
+  const prev = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return "";
+  let computation = "";
+  switch (operation) {
+    case "+":
+      computation = prev + current;
+      break;
+    case "-":
+      computation = prev - current;
+      break;
+    case "×":
+      computation = prev * current;
+      break;
+    case "%":
+      computation = prev % current;
+      break;
+    case "÷":
+      computation = prev / current;
+      break;
+    default:
+      return;
+  }
+
+  return computation.toString();
+}
+
+const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0,
+});
+function formatOperand(operand) {
+  if (operand == null) return;
+  const [integer, decimal] = operand.split(".");
+  if (decimal == null) return INTEGER_FORMATTER.format(integer);
+  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
+}
+
+export default function Counter() {
+  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
+    reducer,
+    {}
+  );
+
   return (
-    <>
-      <Counter />
-    </>
+    <CalcBody>
+      <div className="calculator__grid">
+        <div className="output">
+          <div className="previous__operand">
+            {formatOperand(previousOperand)} {operation}
+          </div>
+          <div className="current__operand">
+            {formatOperand(currentOperand)}
+          </div>
+        </div>
+        <button
+          className="span-two delete"
+          onClick={() => dispatch({ type: ACTIONS.CLEAR })}>
+          AC
+        </button>
+        <OperationButton
+          operation="%"
+          dispatch={dispatch}
+          className="operations"
+        />
+        <OperationButton
+          operation="÷"
+          dispatch={dispatch}
+          className="operations"
+        />
+        <DigitButton digit="7" dispatch={dispatch} />
+        <DigitButton digit="8" dispatch={dispatch} />
+        <DigitButton digit="9" dispatch={dispatch} />
+        <OperationButton
+          operation="×"
+          dispatch={dispatch}
+          className="operations"
+        />
+        <DigitButton digit="4" dispatch={dispatch} />
+        <DigitButton digit="5" dispatch={dispatch} />
+        <DigitButton digit="6" dispatch={dispatch} />
+        <OperationButton
+          operation="-"
+          dispatch={dispatch}
+          className="operations"
+        />
+        <DigitButton digit="1" dispatch={dispatch} />
+        <DigitButton digit="2" dispatch={dispatch} />
+        <DigitButton digit="3" dispatch={dispatch} />
+        <OperationButton
+          operation="+"
+          dispatch={dispatch}
+          className="operations"
+        />
+        <DigitButton digit="0" dispatch={dispatch} />
+        <DigitButton digit="." dispatch={dispatch} />
+        <button onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
+          <img src="./delete.svg" alt="" className="delete__last__simbol" />
+        </button>
+        <button
+          onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
+          className="equally">
+          =
+        </button>
+      </div>
+    </CalcBody>
   );
 }
-export default Calculator;

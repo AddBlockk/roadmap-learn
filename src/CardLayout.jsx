@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { people } from "./data";
 
 const CardTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2;
   .container__cards {
     display: flex;
     flex-direction: column;
@@ -21,6 +25,7 @@ const CardTitle = styled.div`
 export default function CardLayout(name) {
   return (
     <CardTitle>
+      <h1>Карточки</h1>
       <div className="container__cards">
         {people.map((person) => (
           <Link to={`/cards/${person.id}`} key={person.id}>

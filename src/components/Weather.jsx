@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-const URL = `http://api.openweathermap.org/data/2.5/weather?q=Astrakhan&units=metric&appid=e6444a7e4b0881480b4f9e3cc971b3e0`;
+const URL = `https://api.openweathermap.org/data/2.5/weather?q=Astrakhan&units=metric&appid=e6444a7e4b0881480b4f9e3cc971b3e0`;
 
 export default function Weather() {
   const [weatherData, setWeatherData] = useState(null);

@@ -1,6 +1,6 @@
-::-webkit-scrollbar {
-  display: none;
-}
+// ::-webkit-scrollbar {
+//   display: none;
+// }
 
 *,
 *::before,
@@ -113,7 +113,7 @@ a {
   text-decoration: none;
 }
 
-main {
+.container {
   padding-top: 80px;
   max-width: 1180px;
   margin: 0 auto;

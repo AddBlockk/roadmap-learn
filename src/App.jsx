@@ -8,6 +8,7 @@ import { NotFound } from "./pages/NotFound";
 import CardLayout from "./CardLayout";
 import Header from "./components/Header";
 import Calculator from "./pages/Calculator";
+import Posts from "./components/Posts";
 export default function App() {
   return (
     <div>
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/cards/new" element={<NewCard />} />
             </Route>
             <Route path="/calculator" element={<Calculator />} />
+            <Route path="/posts" element={<Posts />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

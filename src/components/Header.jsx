@@ -78,6 +78,11 @@ export default function Header() {
                 Калькулятор
               </Link>
             </li>
+            <li>
+              <Link to="/posts" className="nav__list-item">
+                Посты
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="button__change-theme">

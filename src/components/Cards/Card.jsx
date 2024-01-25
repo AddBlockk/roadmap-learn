@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { people } from "../data";
+import { people } from "../../data";
 import styled from "styled-components";
 
 const CardBody = styled.div`

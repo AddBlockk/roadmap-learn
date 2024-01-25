@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import styled from "styled-components";
-import DigitButton from "../components/DigitButton";
-import OperationButton from "../components/OperationButton";
+import DigitButton from "../components/Calculator/DigitButton";
+import OperationButton from "../components/Calculator/OperationButton";
 
 const CalcBody = styled.div`
   .counts {

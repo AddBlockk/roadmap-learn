@@ -1,12 +1,9 @@
 import styled from "styled-components";
-import ChangeTitle from "../components/ButtonСhangeTitle";
+import ChangeTitle from "../components/ButtonsChange/ButtonСhangeTitle";
 import Weather from "../components/Weather";
+import Todo from "../components/Todos/Todo";
 
-const HomeStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const HomeStyled = styled.div``;
 
 export default function Home() {
   return (
@@ -18,6 +15,7 @@ export default function Home() {
         </p>
         <ChangeTitle />
         <Weather />
+        <Todo />
       </div>
     </HomeStyled>
   );

@@ -1,13 +1,13 @@
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Card from "./pages/Card";
-import NewCard from "./pages/NewCard";
-import { NotFound } from "./pages/NotFound";
-import CardLayout from "./CardLayout";
+import Card from "./components/Cards/Card";
+import NewCard from "./components/Cards/NewCard";
+import { NotFound } from "./components/Cards/NotFound";
+import CardLayout from "./pages/CardLayout";
 import Header from "./components/Header";
 import Calculator from "./pages/Calculator";
-import Posts from "./components/Posts";
+import Posts from "./pages/Posts";
 
 export default function App() {
   return (

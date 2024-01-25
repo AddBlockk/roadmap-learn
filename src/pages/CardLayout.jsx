@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
-import { people } from "./data";
+import { people } from "../data";
 
 const CardTitle = styled.div`
   display: flex;

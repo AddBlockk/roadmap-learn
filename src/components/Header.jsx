@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ButtonChangeTheme from "./ButtonChangeTheme";
+import ButtonChangeTheme from "./ButtonsChange/ButtonChangeTheme";
 import { styled } from "styled-components";
 
 const HeaderContainer = styled.header`
@@ -58,7 +58,7 @@ export default function Header() {
       <div className="nav__body">
         <div className="header-logo">
           <Link to="/">
-            <img src="./logo.svg" alt="logo" />
+            <img src="/logo.svg" alt="logo" />
           </Link>
         </div>
         <nav className="nav__list">

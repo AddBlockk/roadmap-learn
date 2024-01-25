@@ -1,4 +1,4 @@
-import { ACTIONS } from "../pages/Calculator";
+import { ACTIONS } from "../../pages/Calculator";
 
 export default function OperationButton({ dispatch, operation }) {
   return (

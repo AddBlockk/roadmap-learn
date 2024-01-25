@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useTheme } from "../hooks/use-theme";
+import { useTheme } from "../../hooks/useTheme";
 
 const ChangeThemeBody = styled.div`
   display: flex;

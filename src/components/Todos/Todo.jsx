@@ -5,12 +5,19 @@ import styled from "styled-components";
 
 const TodoContainer = styled.div`
   margin-top: 20px;
+  h1 {
+    margin-bottom: 20px;
+  }
 `;
 
 function Todo() {
   const [todos, setTodos] = useState([]);
 
   const addTodoHandler = (text) => {
+    const newTodo = {
+      text: text,
+      isCompleted: false,
+    };
     setTodos([...todos, text]);
   };
 

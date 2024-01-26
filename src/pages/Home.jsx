@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ChangeTitle from "../components/ButtonsChange/ButtonСhangeTitle";
 import Weather from "../components/Weather";
 import Todo from "../components/Todos/Todo";
+import Timer from "../components/Timer";
 
 const HomeStyled = styled.div``;
 
@@ -16,6 +17,7 @@ export default function Home() {
         <ChangeTitle />
         <Weather />
         <Todo />
+        <Timer />
       </div>
     </HomeStyled>
   );

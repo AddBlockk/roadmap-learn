@@ -3,6 +3,7 @@ import useSound from "use-sound";
 import work from "../sounds/work-sound.mp3";
 import rest from "../sounds/rest-sound.mp3";
 import reset from "../sounds/reset-sound.mp3";
+import pause from "../sounds/pause-sound.mp3";
 import styled from "styled-components";
 
 const TodoStyle = styled.div`
@@ -30,7 +31,10 @@ const TodoStyle = styled.div`
     column-gap: 10px;
   }
   .button__reset {
-    background-color: #b22020;
+    background-color: #e41212;
+  }
+  .button__pause {
+    background-color: #e4bd12;
   }
 `;
 
@@ -41,6 +45,7 @@ const Timer = () => {
   const [isRestTime, setIsRestTime] = useState(
     localStorage.getItem("isRestTime") === "true" ? true : false
   );
+  const [isPauseTime, setIsPauseTime] = useState(false);
   const [time, setTime] = useState(
     localStorage.getItem("time") ? parseInt(localStorage.getItem("time")) : 2400
   );
@@ -49,6 +54,7 @@ const Timer = () => {
   const [playWorkTime] = useSound(work);
   const [playRestTime] = useSound(rest);
   const [playResetTime] = useSound(reset);
+  const [playPauseTime] = useSound(pause);
   const [isWorkSoundPlaying, setIsWorkSoundPlaying] = useState(true);
 
   useEffect(() => {
@@ -90,8 +96,9 @@ const Timer = () => {
   useEffect(() => {
     localStorage.setItem("isActive", isActive);
     localStorage.setItem("isRestTime", isRestTime);
+    localStorage.setItem("isPauseTime", isPauseTime);
     localStorage.setItem("time", time);
-  }, [isActive, isRestTime, time]);
+  }, [isActive, isRestTime, time, isPauseTime]);
 
   const formatTime = () => {
     const minutes = Math.floor(time / 60);
@@ -111,6 +118,14 @@ const Timer = () => {
     setIsRestTime(false);
     setTime(2400);
     playResetTime();
+    setIsPauseTime(false);
+  };
+
+  const handlePause = () => {
+    setIsActive(false);
+    setIsRestTime(false);
+    playPauseTime();
+    setIsPauseTime(true);
   };
 
   return (
@@ -119,8 +134,15 @@ const Timer = () => {
       <h2>Стадия: {isRestTime ? "Отдых" : "Работа"}</h2>
       <h1 className="timer">{formatTime()}</h1>
       <div className="buttons__timer">
-        {isActive ? "" : <button onClick={handleStart}>Старт</button>}
         {isActive ? (
+          <button onClick={handlePause} className="button__pause">
+            Пауза
+          </button>
+        ) : (
+          ""
+        )}
+        {isActive ? "" : <button onClick={handleStart}>Старт</button>}
+        {isActive || isRestTime || isPauseTime === true ? (
           <button onClick={handleReset} className="button__reset">
             Сброс
           </button>

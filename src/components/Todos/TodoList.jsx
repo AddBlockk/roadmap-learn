@@ -9,7 +9,7 @@ function TodoList({ todos, deleteTodo }) {
         todos.map((todo, index) => (
           <TodoItem
             key={index}
-            todo={todo}
+            todo={todo.text}
             index={index}
             deleteTodo={deleteTodo}
           />

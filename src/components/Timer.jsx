@@ -2,14 +2,53 @@ import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
 import work from "../sounds/work-sound.mp3";
 import rest from "../sounds/rest-sound.mp3";
+import reset from "../sounds/reset-sound.mp3";
+import styled from "styled-components";
+
+const TodoStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+  .timer {
+    font-size: 64px;
+  }
+  button {
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 20px;
+    border: none;
+    background-color: lightseagreen;
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  .buttons__timer {
+    display: flex;
+    column-gap: 10px;
+  }
+  .button__reset {
+    background-color: #b22020;
+  }
+`;
+
 const Timer = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [isRestTime, setIsRestTime] = useState(false);
-  const [time, setTime] = useState(2400);
+  const [isActive, setIsActive] = useState(
+    localStorage.getItem("isActive") === "true" ? true : false
+  );
+  const [isRestTime, setIsRestTime] = useState(
+    localStorage.getItem("isRestTime") === "true" ? true : false
+  );
+  const [time, setTime] = useState(
+    localStorage.getItem("time") ? parseInt(localStorage.getItem("time")) : 2400
+  );
   const restTime = 300;
   const workTime = 2400;
   const [playWorkTime] = useSound(work);
   const [playRestTime] = useSound(rest);
+  const [playResetTime] = useSound(reset);
   const [isWorkSoundPlaying, setIsWorkSoundPlaying] = useState(true);
 
   useEffect(() => {
@@ -48,6 +87,12 @@ const Timer = () => {
     time,
   ]);
 
+  useEffect(() => {
+    localStorage.setItem("isActive", isActive);
+    localStorage.setItem("isRestTime", isRestTime);
+    localStorage.setItem("time", time);
+  }, [isActive, isRestTime, time]);
+
   const formatTime = () => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -65,15 +110,27 @@ const Timer = () => {
     setIsActive(false);
     setIsRestTime(false);
     setTime(2400);
+    playResetTime();
   };
 
   return (
-    <div>
-      <div>{isRestTime ? "Отдых" : "Работа"}</div>
-      <div>{formatTime()}</div>
-      {isActive ? "" : <button onClick={handleStart}>Старт</button>}
-      <button onClick={handleReset}>Сброс</button>
-    </div>
+    <TodoStyle>
+      <h1>Задачки</h1>
+      <h2>Стадия: {isRestTime ? "Отдых" : "Работа"}</h2>
+      <h1 className="timer">{formatTime()}</h1>
+      <div className="buttons__timer">
+        {isActive ? "" : <button onClick={handleStart}>Старт</button>}
+        {isActive ? (
+          <button onClick={handleReset} className="button__reset">
+            Сброс
+          </button>
+        ) : (
+          <button onClick={handleReset} disabled className="button__reset">
+            Сброс
+          </button>
+        )}
+      </div>
+    </TodoStyle>
   );
 };
 

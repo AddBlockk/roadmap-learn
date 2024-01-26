@@ -31,7 +31,9 @@ function TodoForm({ addTodo }) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    addTodo(text);
+    if (text.trim().length > 0) {
+      addTodo(text);
+    }
     setText("");
   };
 

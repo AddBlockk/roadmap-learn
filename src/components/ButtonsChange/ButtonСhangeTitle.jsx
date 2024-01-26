@@ -33,7 +33,7 @@ export default function ButtonChangeTitle() {
       <button
         onClick={() => setCount((count) => count + 1)}
         className="change__title">
-        Изменить Заголовок
+        Изменить Заголовок страницы
       </button>
     </ButtonTitle>
   );

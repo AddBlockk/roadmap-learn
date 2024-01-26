@@ -4,7 +4,12 @@ import Weather from "../components/Weather";
 import Todo from "../components/Todos/Todo";
 import Timer from "../components/Timer";
 
-const HomeStyled = styled.div``;
+const HomeStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+`;
 
 export default function Home() {
   return (
@@ -16,8 +21,8 @@ export default function Home() {
         </p>
         <ChangeTitle />
         <Weather />
-        <Todo />
         <Timer />
+        <Todo />
       </div>
     </HomeStyled>
   );

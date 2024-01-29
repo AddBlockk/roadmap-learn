@@ -1,7 +1,8 @@
+import React from "react";
 import { useReducer } from "react";
 import styled from "styled-components";
-import DigitButton from "../components/Calculator/DigitButton";
-import OperationButton from "../components/Calculator/OperationButton";
+import DigitButton from "../components/Calculator/DigitButton.tsx";
+import OperationButton from "../components/Calculator/OperationButton.tsx";
 
 const CalcBody = styled.div`
   .counts {
@@ -72,6 +73,13 @@ const CalcBody = styled.div`
   }
 `;
 
+interface State {
+  currentOperand?: string | null;
+  previousOperand?: string | null;
+  operation?: string | null;
+  overwrite?: boolean;
+}
+
 export const ACTIONS = {
   ADD_DIGIT: "add-digit",
   CHOOSE_OPERATION: "choose-operation",
@@ -80,7 +88,10 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
-function reducer(state, { type, payload }) {
+function reducer(
+  state: State,
+  { type, payload }: { type: string; payload?: any }
+) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
       if (state.overwrite) {
@@ -167,49 +178,50 @@ function reducer(state, { type, payload }) {
         currentOperand: evaluate(state),
       };
     default:
-      return;
+      return state;
   }
 }
 
-function evaluate({ currentOperand, previousOperand, operation }) {
-  const prev = parseFloat(previousOperand);
-  const current = parseFloat(currentOperand);
+function evaluate({ currentOperand, previousOperand, operation }: State) {
+  const prev = parseFloat(previousOperand!);
+  const current = parseFloat(currentOperand!);
   if (isNaN(prev) || isNaN(current)) return "";
   let computation = "";
   switch (operation) {
     case "+":
-      computation = prev + current;
+      computation = (prev + current).toString();
       break;
     case "-":
-      computation = prev - current;
+      computation = (prev - current).toString();
       break;
     case "×":
-      computation = prev * current;
+      computation = (prev * current).toString();
       break;
     case "%":
-      computation = prev % current;
+      computation = (prev % current).toString();
       break;
     case "÷":
-      computation = prev / current;
+      computation = (prev / current).toString();
       break;
     default:
-      return;
+      return "";
   }
 
-  return computation.toString();
+  return computation;
 }
 
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0,
 });
-function formatOperand(operand) {
+
+function formatOperand(operand: string | null | undefined) {
   if (operand == null) return;
   const [integer, decimal] = operand.split(".");
-  if (decimal == null) return INTEGER_FORMATTER.format(integer);
-  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
+  if (decimal == null) return INTEGER_FORMATTER.format(Number(integer));
+  return `${INTEGER_FORMATTER.format(Number(integer))}.${decimal}`;
 }
 
-export default function Counter() {
+export default function Calculator() {
   const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
     reducer,
     {}

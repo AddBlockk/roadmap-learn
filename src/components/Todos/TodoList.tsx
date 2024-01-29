@@ -1,4 +1,5 @@
-import TodoItem from "./TodoItem";
+import React from "react";
+import TodoItem from "./TodoItem.tsx";
 
 function TodoList({ todos, deleteTodo }) {
   return (

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import Post from "../components/Post";
+import React, { useEffect, useState } from "react";
+import Post from "../components/Post.tsx";
 import styled from "styled-components";
 
 const PostsStyled = styled.div`
@@ -8,11 +8,18 @@ const PostsStyled = styled.div`
   align-items: center;
 `;
 
-export default function Posts() {
+interface PostData {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
+
+const Posts: React.FC = () => {
   const API_URL = "https://jsonplaceholder.typicode.com/posts";
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<PostData[]>([]);
+  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
@@ -41,4 +48,6 @@ export default function Posts() {
       )}
     </PostsStyled>
   );
-}
+};
+
+export default Posts;

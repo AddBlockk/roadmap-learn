@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ButtonChangeTheme from "./ButtonsChange/ButtonChangeTheme";
+import ButtonChangeTheme from "./ButtonsChange/ButtonChangeTheme.tsx";
 import { styled } from "styled-components";
 
 const HeaderContainer = styled.header`

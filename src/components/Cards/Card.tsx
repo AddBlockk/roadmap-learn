@@ -1,5 +1,6 @@
+import React from "react";
 import { useParams } from "react-router-dom";
-import { people } from "../../data";
+import { people } from "../../data.ts";
 import styled from "styled-components";
 
 const CardBody = styled.div`
@@ -12,9 +13,11 @@ const CardBody = styled.div`
     max-width: 900px;
     align-items: center;
     justify-content: space-between;
+
     .logo__person {
       width: 160px;
     }
+
     .body__person {
       display: flex;
       align-items: center;
@@ -24,12 +27,21 @@ const CardBody = styled.div`
   }
 `;
 
+interface Person {
+  id: number;
+  photo: string;
+  name: string;
+  description: string;
+}
+
 function Card() {
-  const { id } = useParams();
-  const person = people.find((person) => person.id === parseInt(id));
+  const { id } = useParams<{ id: string }>()!;
+  const person = people.find((person: Person) => person.id === parseInt(id!));
+
   if (!person) {
     return <h1>Человек с id {id} не найден</h1>;
   }
+
   return (
     <CardBody>
       <div key={person.id} className="container__info_person">
@@ -44,4 +56,5 @@ function Card() {
     </CardBody>
   );
 }
+
 export default Card;

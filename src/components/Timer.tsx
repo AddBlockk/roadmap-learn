@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
-import work from "../sounds/work-sound.mp3";
-import rest from "../sounds/rest-sound.mp3";
-import reset from "../sounds/reset-sound.mp3";
-import pause from "../sounds/pause-sound.mp3";
 import styled from "styled-components";
 
 const TodoStyle = styled.div`
@@ -38,27 +34,29 @@ const TodoStyle = styled.div`
   }
 `;
 
-const Timer = () => {
+const Timer: React.FC = () => {
   const [isActive, setIsActive] = useState(
-    localStorage.getItem("isActive") === "true" ? true : false
+    localStorage.getItem("isActive") === "true"
   );
   const [isRestTime, setIsRestTime] = useState(
-    localStorage.getItem("isRestTime") === "true" ? true : false
+    localStorage.getItem("isRestTime") === "true"
   );
   const [isPauseTime, setIsPauseTime] = useState(false);
   const [time, setTime] = useState(
-    localStorage.getItem("time") ? parseInt(localStorage.getItem("time")) : 2400
+    localStorage.getItem("time")
+      ? parseInt(localStorage.getItem("time")!)
+      : 2400
   );
   const restTime = 300;
   const workTime = 2400;
-  const [playWorkTime] = useSound(work);
-  const [playRestTime] = useSound(rest);
-  const [playResetTime] = useSound(reset);
-  const [playPauseTime] = useSound(pause);
+  const [playWorkTime] = useSound("/sounds/work-sound.mp3");
+  const [playRestTime] = useSound("/sounds/rest-sound.mp3");
+  const [playResetTime] = useSound("/sounds/reset-sound.mp3");
+  const [playPauseTime] = useSound("/sounds/pause-sound.mp3");
   const [isWorkSoundPlaying, setIsWorkSoundPlaying] = useState(true);
 
   useEffect(() => {
-    let interval = null;
+    let interval: any = null;
 
     if (isActive) {
       interval = setInterval(() => {
@@ -90,15 +88,15 @@ const Timer = () => {
     playWorkTime,
     playRestTime,
     restTime,
-    time,
+    workTime,
   ]);
 
   useEffect(() => {
-    localStorage.setItem("isActive", isActive);
-    localStorage.setItem("isRestTime", isRestTime);
-    localStorage.setItem("isPauseTime", isPauseTime);
-    localStorage.setItem("time", time);
-  }, [isActive, isRestTime, time, isPauseTime]);
+    localStorage.setItem("isActive", String(isActive));
+    localStorage.setItem("isRestTime", String(isRestTime));
+    localStorage.setItem("isPauseTime", String(isPauseTime));
+    localStorage.setItem("time", String(time));
+  }, [isActive, isRestTime, isPauseTime, time]);
 
   const formatTime = () => {
     const minutes = Math.floor(time / 60);
@@ -138,19 +136,13 @@ const Timer = () => {
           <button onClick={handlePause} className="button__pause">
             Пауза
           </button>
-        ) : (
-          ""
-        )}
-        {isActive ? "" : <button onClick={handleStart}>Старт</button>}
-        {isActive || isRestTime || isPauseTime === true ? (
+        ) : null}
+        {isActive ? null : <button onClick={handleStart}>Старт</button>}
+        {(isActive || isRestTime || isPauseTime) === true ? (
           <button onClick={handleReset} className="button__reset">
             Сброс
           </button>
-        ) : (
-          <button onClick={handleReset} disabled className="button__reset">
-            Сброс
-          </button>
-        )}
+        ) : null}
       </div>
     </TodoStyle>
   );

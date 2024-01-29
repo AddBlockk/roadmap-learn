@@ -21,8 +21,8 @@ const ButtonTitle = styled.div`
   }
 `;
 
-export default function ButtonChangeTitle() {
-  const [count, setCount] = useState(0);
+export default function ButtonChangeTitle(): JSX.Element {
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     document.title = `Название заголовка: ${count}`;

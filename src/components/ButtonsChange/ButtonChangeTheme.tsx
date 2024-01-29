@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -17,7 +18,7 @@ const ChangeThemeBody = styled.div`
   }
 `;
 
-export default function ChangeTheme() {
+export default function ChangeTheme(): JSX.Element {
   const { setTheme } = useTheme();
   const handleDarkThemeClick = () => {
     setTheme("dark");

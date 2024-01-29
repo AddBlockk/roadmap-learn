@@ -7,6 +7,10 @@
       <img src="https://img.shields.io/npm/v/styled-components?label=styled-components">
       <img src="https://img.shields.io/npm/v/react-router-dom?label=react-router-dom">
       <img src="https://img.shields.io/npm/v/typescript?label=typescript">
-      
-      
+</p>
+
+## About
+
+My project is a collection of various technical tools created and developed using React. Through numerous pet projects, I have been able to learn and grow as a developer.
+
       

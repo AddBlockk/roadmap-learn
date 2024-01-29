@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+<p align="center">
+      <img src="https://i.ibb.co/1KF60PV/image-2024-01-29-21-05-19.png"
+</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

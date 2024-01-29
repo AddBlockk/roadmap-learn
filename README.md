@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-      <img src="https://img.shields.io/npm/v/react?label=react" alt="react">
-      <img src="https://img.shields.io/npm/v/rea?label=styled-components alt="styled-components">
-      <img src="https://img.shields.io/npm/v/react-router-dom?label=react-router-dom alt="react-router-dom">
+      <img src="https://img.shields.io/npm/v/react?label=react">
+      <img src="https://img.shields.io/npm/v/rea?label=styled-components>
+      <img src="https://img.shields.io/npm/v/react-router-dom?label=react-router-dom>
       
       
       

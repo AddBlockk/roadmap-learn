@@ -4,7 +4,7 @@
 
 <p align="center">
       <img src="https://img.shields.io/npm/v/react?label=react">
-      <img src="https://img.shields.io/npm/v/rea?label=styled-components">
+      <img src="https://img.shields.io/npm/v/styled-components?label=styled-components">
       <img src="https://img.shields.io/npm/v/react-router-dom?label=react-router-dom">
       
       

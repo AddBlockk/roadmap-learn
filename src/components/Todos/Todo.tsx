@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm.tsx";
 import TodoList from "./TodoList.tsx";
 import styled from "styled-components";
-import deleteTodoButton from "../../img/icons/deleteToto.svg";
+import deleteTodoButton from "../../assets/icons/deleteToto.svg";
 
 const TodoContainer = styled.div`
   margin-top: 20px;
@@ -46,11 +46,14 @@ function Todo() {
   };
 
   const deleteTodoHandler = (index: number) => {
-    setTodos(todos.filter((_, idx) => idx !== index));
+    const newTodos = todos.filter((_, idx) => idx !== index);
+    setTodos(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   const deleteTodosHandler = () => {
     setTodos([]);
+    localStorage.setItem("todos", JSON.stringify([]));
   };
 
   return (
@@ -58,7 +61,7 @@ function Todo() {
       <h1>Todo App</h1>
       <TodoForm addTodo={addTodoHandler} />
       <img
-        src={deleteTodoButton}
+        src={deleteTodoButton as any}
         alt="удалить"
         className="delete__todo"
         onClick={deleteTodosHandler}

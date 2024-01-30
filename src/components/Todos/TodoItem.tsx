@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import deleteTodoButton from "../../img/icons/deleteToto.svg";
+import deleteTodoButton from "../../assets/icons/deleteToto.svg";
 
 const TodoItemBody = styled.div`
   background-color: lightseagreen;
@@ -40,7 +40,7 @@ function TodoItem({ todo, index, deleteTodo }) {
       <div className="right__todo__item">
         <button>Удалить</button>
         <img
-          src={deleteTodoButton}
+          src={deleteTodoButton as any}
           alt="удалить"
           className="delete__todo"
           onClick={() => deleteTodo(index)}

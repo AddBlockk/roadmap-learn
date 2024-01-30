@@ -12,7 +12,6 @@
     "react-scripts": "^5.0.1",
     "sass": "^1.69.7",
     "styled-components": "^6.1.8",
-    "typescript": "^5.3.3",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -41,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "typescript": "^4.5.4",
     "webpack": "^4.29.6"
   }
 }

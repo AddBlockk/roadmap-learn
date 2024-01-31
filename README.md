@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-      <img src="https://img.shields.io/npm/v/react?label=react">
-      <img src="https://img.shields.io/npm/v/styled-components?label=styled-components">
+      <img src="https://img.shields.io/npm/v/react?logo=react&label=react">
+      <img src="https://img.shields.io/npm/v/styled-components?logo=styled-components&label=styled-components">
       <img src="https://img.shields.io/npm/v/react-router-dom?label=react-router-dom">
-      <img src="https://img.shields.io/npm/v/typescript?label=typescript">
+      <img src="https://img.shields.io/npm/v/typescript?logo=typescript&label=typescript">
 </p>
 
 ## About

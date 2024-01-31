@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
-import { people } from "../data.ts";
+import { people } from "../data";
 
 const CardTitle = styled.div`
   display: flex;
@@ -23,12 +23,17 @@ const CardTitle = styled.div`
   }
 `;
 
-export default function CardLayout(name) {
+interface Person {
+  id: number;
+  name: string;
+}
+
+const CardLayout: React.FC = () => {
   return (
     <CardTitle>
       <h1>Карточки</h1>
       <div className="container__cards">
-        {people.map((person) => (
+        {people.map((person: Person) => (
           <Link to={`/cards/${person.id}`} key={person.id}>
             {person.name}
           </Link>
@@ -38,4 +43,6 @@ export default function CardLayout(name) {
       <Outlet />
     </CardTitle>
   );
-}
+};
+
+export default CardLayout;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { people } from "../../data.ts";
+import { people } from "../../data";
 import styled from "styled-components";
 
 const CardBody = styled.div`

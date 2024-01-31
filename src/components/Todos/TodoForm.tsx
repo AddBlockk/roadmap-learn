@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const TodoContainer = styled.div`
@@ -27,10 +26,14 @@ const TodoContainer = styled.div`
   }
 `;
 
-function TodoForm({ addTodo }) {
+interface TodoFormProps {
+  addTodo: (text: string) => void;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
   const [text, setText] = useState("");
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     if (text.trim().length > 0) {
       addTodo(text);
@@ -50,6 +53,6 @@ function TodoForm({ addTodo }) {
       </form>
     </TodoContainer>
   );
-}
+};
 
 export default TodoForm;

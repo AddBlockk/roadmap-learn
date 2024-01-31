@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Post from "../components/Post.tsx";
+import Post from "../components/Post";
 import styled from "styled-components";
 
 const PostsStyled = styled.div`
@@ -27,8 +27,8 @@ const Posts: React.FC = () => {
         const res = await fetch(API_URL);
         const posts = await res.json();
         setPosts(posts);
-      } catch (error) {
-        setError(error.message);
+      } catch (error: unknown) {
+        setError(error instanceof Error ? error.message : "Unknown error");
       }
       setIsLoading(false);
     })();

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import ChangeTitle from "../components/ButtonsChange/ButtonСhangeTitle.tsx";
-import Weather from "../components/Weather.tsx";
-import Todo from "../components/Todos/Todo.tsx";
-import Timer from "../components/Timer.tsx";
+import ChangeTitle from "../components/ButtonsChange/ButtonСhangeTitle";
+import Weather from "../components/Weather";
+import Todo from "../components/Todos/Todo";
+import Timer from "../components/Timer";
 
 const HomeStyled = styled.div`
   display: flex;

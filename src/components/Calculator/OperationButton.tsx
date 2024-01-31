@@ -1,5 +1,5 @@
 import React from "react";
-import { ACTIONS } from "../../pages/Calculator.tsx";
+import { ACTIONS } from "../../pages/Calculator";
 
 interface OperationButtonProps {
   dispatch: React.Dispatch<{ type: string; payload: { operation: string } }>;

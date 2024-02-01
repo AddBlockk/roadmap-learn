@@ -13,7 +13,6 @@ const PostsStyled = styled.div`
     border-radius: 5px;
     border: 1px solid black;
     padding: 7px;
-    /* а */
   }
 `;
 

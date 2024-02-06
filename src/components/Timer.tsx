@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import useSound from "use-sound";
+import React, { useState, useEffect, useMemo } from "react";
+// import useSound from "use-sound";
 import styled from "styled-components";
+import { Howl } from "howler";
 
 const TodoStyle = styled.div`
   display: flex;
@@ -49,10 +50,22 @@ const Timer: React.FC = () => {
   );
   const restTime = 300;
   const workTime = 2400;
-  const [playWorkTime] = useSound("/sounds/work-sound.mp3");
-  const [playRestTime] = useSound("/sounds/rest-sound.mp3");
-  const [playResetTime] = useSound("/sounds/reset-sound.mp3");
-  const [playPauseTime] = useSound("/sounds/pause-sound.mp3");
+  const playWorkTime = useMemo(
+    () => new Howl({ src: "/sounds/work-sound.mp3" }),
+    []
+  );
+  const playRestTime = useMemo(
+    () => new Howl({ src: "/sounds/rest-sound.mp3" }),
+    []
+  );
+  const playResetTime = useMemo(
+    () => new Howl({ src: "/sounds/reset-sound.mp3" }),
+    []
+  );
+  const playPauseTime = useMemo(
+    () => new Howl({ src: "/sounds/pause-sound.mp3" }),
+    []
+  );
   const [isWorkSoundPlaying, setIsWorkSoundPlaying] = useState(true);
 
   useEffect(() => {
@@ -64,11 +77,11 @@ const Timer: React.FC = () => {
           if (prevTime === 0) {
             setIsRestTime((prevIsRestTime) => !prevIsRestTime);
             if (isWorkSoundPlaying) {
-              playRestTime();
+              playRestTime.play();
               setIsWorkSoundPlaying(false);
               return restTime;
             } else {
-              playWorkTime();
+              playWorkTime.play();
               setIsWorkSoundPlaying(true);
               return workTime;
             }
@@ -108,21 +121,21 @@ const Timer: React.FC = () => {
 
   const handleStart = () => {
     setIsActive(true);
-    playWorkTime();
+    playWorkTime.play();
   };
 
   const handleReset = () => {
     setIsActive(false);
     setIsRestTime(false);
     setTime(2400);
-    playResetTime();
+    playResetTime.play();
     setIsPauseTime(false);
   };
 
   const handlePause = () => {
     setIsActive(false);
     setIsRestTime(false);
-    playPauseTime();
+    playPauseTime.play();
     setIsPauseTime(true);
   };
 

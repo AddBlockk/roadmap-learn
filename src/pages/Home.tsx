@@ -4,6 +4,7 @@ import ChangeTitle from "../components/ButtonsChange/ButtonСhangeTitle";
 import Weather from "../components/Weather";
 import Todo from "../components/Todos/Todo";
 import Timer from "../components/Timer";
+import BookLibrary from "../components/BookLibrary/BookLibrary";
 
 const HomeStyled = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ export default function Home() {
         <ChangeTitle />
         <Weather />
         <Timer />
+        <BookLibrary />
         <Todo />
       </div>
     </HomeStyled>
